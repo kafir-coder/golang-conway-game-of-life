@@ -66,3 +66,23 @@ func (u Universe) Seed() {
 	}
 
 }
+
+/*
+	Time Complexity: O(1)
+*/
+func wrapUp(x, y int) (int, int) {
+	if x < 0 {
+		x = width - 1
+	}
+	if y < 0 {
+		y = height - 1
+	}
+
+	if x >= width {
+		x = 0
+	}
+	if y >= height {
+		y = 0
+	}
+	return x, y
+}
