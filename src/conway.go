@@ -116,3 +116,26 @@ func (u Universe) Neighbors(x, y int) int {
 	}
 	return counter
 }
+
+/*
+	Time Complexity: O(1)
+*/
+func (u Universe) Next(x, y int) bool {
+	neighbors := u.Neighbors(x, y)
+	var willLive bool
+	switch u.Alive(x, y) {
+	case true:
+		if neighbors < 2 {
+			willLive = false
+		} else if neighbors == 2 || neighbors == 3 {
+			willLive = true
+		} else if neighbors > 3 {
+			willLive = false
+		}
+	case false:
+		if neighbors == 3 {
+			willLive = true
+		}
+	}
+	return willLive
+}
