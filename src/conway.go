@@ -15,3 +15,14 @@ const (
 	width  = 10
 	height = 10
 )
+
+/*
+	Time Complexity: O(n)
+*/
+func NewUniverse() Universe {
+	universe := make([][]bool, width)
+	for k, _ := range universe {
+		universe[k] = make([]bool, height)
+	}
+	return universe
+}
