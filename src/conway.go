@@ -86,3 +86,11 @@ func wrapUp(x, y int) (int, int) {
 	}
 	return x, y
 }
+
+/*
+	Time Complexity: O(1)
+*/
+func (u Universe) Alive(x, y int) bool {
+	x, y = wrapUp(x, y)
+	return u[x][y]
+}
