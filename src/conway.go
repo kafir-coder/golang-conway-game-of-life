@@ -139,3 +139,14 @@ func (u Universe) Next(x, y int) bool {
 	}
 	return willLive
 }
+
+/*
+	Time Complexity: O(n^2)
+*/
+func (u Universe) Step(future Universe) {
+	for k, _ := range u {
+		for k1, _ := range u[k] {
+			future[k][k1] = u.Next(k, k1)
+		}
+	}
+}
