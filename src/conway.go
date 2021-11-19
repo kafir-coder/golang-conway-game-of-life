@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 /*
 
@@ -44,4 +47,22 @@ func (u Universe) Show() {
 		fmt.Println()
 	}
 	fmt.Println()
+}
+
+/*
+	Time Complexity: O(n)
+*/
+func (u Universe) Seed() {
+
+	universe_size := width * height
+	universe_size_genesis_population := (universe_size * 25) / 100
+
+	counter := 0
+	for counter < universe_size_genesis_population {
+		x_axis_random := rand.Intn(width - 1)
+		y_axis_random := rand.Intn(height - 1)
+		u[x_axis_random][y_axis_random] = true
+		counter++
+	}
+
 }
