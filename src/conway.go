@@ -94,3 +94,25 @@ func (u Universe) Alive(x, y int) bool {
 	x, y = wrapUp(x, y)
 	return u[x][y]
 }
+
+/*
+	Time Complexity: O(n^2)
+*/
+func (u Universe) Neighbors(x, y int) int {
+
+	counter := 0
+	for i := 0; i < 3; i++ {
+		for n := 0; n < 3; n++ {
+			x_axis := x + 1 - i
+			y_axis := y + 1 - n
+			l, c := wrapUp(x_axis, y_axis)
+			if u.Alive(l, c) {
+				counter++
+			}
+		}
+	}
+	if u.Alive(x, y) {
+		counter--
+	}
+	return counter
+}
