@@ -8,3 +8,10 @@ package main
 	Github: kafir-coder
 
 */
+
+type Universe [][]bool
+
+const (
+	width  = 10
+	height = 10
+)
