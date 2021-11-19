@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 /*
 
 	Author: Caio Tony
@@ -25,4 +27,21 @@ func NewUniverse() Universe {
 		universe[k] = make([]bool, height)
 	}
 	return universe
+}
+
+/*
+	Time Complexity: O(n^2)
+*/
+func (u Universe) Show() {
+	for k, _ := range u {
+		for _, v1 := range u[k] {
+			if v1 == false {
+				fmt.Printf("⛔")
+			} else {
+				fmt.Printf("♎")
+			}
+		}
+		fmt.Println()
+	}
+	fmt.Println()
 }
