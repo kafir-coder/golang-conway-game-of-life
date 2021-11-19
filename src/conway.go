@@ -150,3 +150,17 @@ func (u Universe) Step(future Universe) {
 		}
 	}
 }
+
+func main() {
+	var universe Universe = NewUniverse()
+	var next_universe Universe = NewUniverse()
+	universe.Seed()
+	i := 0
+	for i < 101 {
+		universe.Show()
+		universe.Step(next_universe)
+		next_universe, universe = universe, next_universe
+		i++
+	}
+
+}
