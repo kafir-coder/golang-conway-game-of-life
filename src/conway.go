@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"os"
+	"strconv"
+	"time"
 )
 
 /*
@@ -152,15 +155,40 @@ func (u Universe) Step(future Universe) {
 }
 
 func main() {
-	var universe Universe = NewUniverse()
-	var next_universe Universe = NewUniverse()
-	universe.Seed()
-	i := 0
-	for i < 101 {
-		universe.Show()
-		universe.Step(next_universe)
-		next_universe, universe = universe, next_universe
-		i++
+	arguments := os.Args[1:]
+
+	fmt.Println(arguments)
+	if len(arguments) < 2 {
+		fmt.Println("--gn [NUMBER_OF_GENERATIONS]")
+		panic("Must have the number of generations")
+	}
+
+	switch arguments[0] {
+	case "--gn":
+		generations, _ := strconv.ParseInt(arguments[1], 10, 0)
+
+		var universe Universe = NewUniverse()
+		var next_universe Universe = NewUniverse()
+		universe.Seed()
+		var i int64
+		for i < generations {
+			fmt.Print("\033[H\033[2J")
+			fmt.Println("Conway Simulator in Go")
+			fmt.Println("-----------------------")
+			fmt.Printf("Geração %v\n", i+1)
+			fmt.Println("-----------------------")
+			universe.Show()
+			universe.Step(next_universe)
+			next_universe, universe = universe, next_universe
+			i++
+			time.Sleep(time.Second)
+			fmt.Print("\033[H\033[2J")
+		}
+
+		os.Exit(0)
+	default:
+		fmt.Println("Invalid Option")
+		os.Exit(1)
 	}
 
 }
